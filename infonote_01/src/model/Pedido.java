@@ -50,12 +50,10 @@ public class Pedido {
 
 	@Override
 	public String toString() {
-		return "Pedido [dataEmissao=" + dataEmissao + ", formaDePagamento=" + formaDePagamento + ", situacao="
-				+ situacao + ", numero=" + numero + ", valorTotal=" + valorTotal + ", getDataEmissao()="
-				+ getDataEmissao() + ", getFormaDePagamento()=" + getFormaDePagamento() + ", getSituacao()="
-				+ getSituacao() + ", getNumero()=" + getNumero() + ", getValorTotal()=" + getValorTotal()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Pedido [\n dataEmissao=" + dataEmissao + ",\n formaDePagamento=" + formaDePagamento + ",\n situacao="
+				+ situacao + ",\n numero=" + numero + ",\n valorTotal=" + valorTotal + "]";
 	}
+
+	
 
 }

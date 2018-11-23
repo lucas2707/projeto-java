@@ -21,11 +21,11 @@ public class ItemDePedido {
 		this.subtotal = subtotal;
 	}
 
+
 	@Override
 	public String toString() {
-		return "ItemDePedido [qtde=" + qtde + ", subtotal=" + subtotal + ", getQtde()=" + getQtde() + ", getSubtotal()="
-				+ getSubtotal() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "ItemDePedido [\nqtde=" + qtde + ",\n subtotal=" + subtotal + "]";
 	}
+
 
 }

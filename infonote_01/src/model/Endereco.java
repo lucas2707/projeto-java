@@ -66,14 +66,13 @@ public class Endereco {
 		this.cep = cep;
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Endereço [logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento
-				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep
-				+ ", getLogradouro()=" + getLogradouro() + ", getNumero()=" + getNumero() + ", getComplemento()="
-				+ getComplemento() + ", getBairro()=" + getBairro() + ", getCidade()=" + getCidade() + ", getEstado()="
-				+ getEstado() + ", getCep()=" + getCep() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Endereco [\n logradouro=" + logradouro + ",\n numero=" + numero + ",\n complemento=" + complemento
+				+ ",\n bairro=" + bairro + ",\n cidade=" + cidade + ",\n estado=" + estado + ",\n cep=" + cep + "]";
 	}
+
+	
 
 }

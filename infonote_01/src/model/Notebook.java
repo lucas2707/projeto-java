@@ -64,16 +64,15 @@ public class Notebook {
 	public void setPrecoUnitario(double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
+
+	
 	@Override
 	public String toString() {
-		return "Notebook [modelo=" + modelo + ", descricao=" + descricao + ", dataCadastro=" + dataCadastro
-				+ ", figura=" + figura + ", numeroNote=" + numeroNote + ", estoque=" + estoque + ", precoUnitario="
-				+ precoUnitario + ", getModelo()=" + getModelo() + ", getDescricao()=" + getDescricao()
-				+ ", getDataCadastro()=" + getDataCadastro() + ", getFigura()=" + getFigura() + ", getNumeroNote()="
-				+ getNumeroNote() + ", getEstoque()=" + getEstoque() + ", getPrecoUnitario()=" + getPrecoUnitario()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Notebook [\nmodelo=" + modelo + ",\n descricao=" + descricao + ",\n dataCadastro=" + dataCadastro
+				+ ",\n figura=" + figura + ",\n numeroNote=" + numeroNote + ",\n estoque=" + estoque + ",\n precoUnitario="
+				+ precoUnitario + "]";
 	}
+	
 	
 	}
 

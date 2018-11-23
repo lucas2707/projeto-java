@@ -58,13 +58,12 @@ public class Usuario {
 
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Usuario [matricula=" + matricula + ", login=" + login + ", senha=" + senha + ", nome=" + nome
-				+ ", email=" + email + ", telefone=" + telefone + ", getMatricula()=" + getMatricula() + ", getLogin()="
-				+ getLogin() + ", getSenha()=" + getSenha() + ", getNome()=" + getNome() + ", getEmail()=" + getEmail()
-				+ ", getTelefone()=" + getTelefone() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Usuario [\nmatricula=" + matricula + ",\n login=" + login + ",\n senha=" + senha + ", \n nome=" + nome
+				+ ",\n email=" + email + ",\n telefone=" + telefone + "]";
 	}
 
+	
 }
