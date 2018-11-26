@@ -54,6 +54,30 @@ public class Pedido {
 				+ situacao + ",\n numero=" + numero + ",\n valorTotal=" + valorTotal + "]";
 	}
 
-	
+
+	public Pedido() {
+		super();
+	}
+
+	public Pedido(String dataEmissao, String formaDePagamento, String situacao, int numero, double valorTotal) {
+		super();
+		this.numero = numero;
+		this.valorTotal = valorTotal;
+		this.dataEmissao = dataEmissao;
+		this.formaDePagamento = formaDePagamento;
+		this.situacao = situacao;
+
+	}
+
+	public void mostrar() {
+
+		System.out.println("`\n\nPedido:\n");
+		System.out.println("Número: " + this.numero);
+		System.out.println("Valor Total: " + this.valorTotal);
+		System.out.println("Data Emissão: " + this.dataEmissao);
+		System.out.println("Forma De Pagamento: " + this.formaDePagamento);
+		System.out.println("Situação: " + this.situacao);
+		
+	}
 
 }

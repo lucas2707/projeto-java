@@ -26,6 +26,23 @@ public class ItemDePedido {
 	public String toString() {
 		return "ItemDePedido [\nqtde=" + qtde + ",\n subtotal=" + subtotal + "]";
 	}
+	public ItemDePedido() {
+		super();
+	}
 
+	public ItemDePedido(int qtde, double subtotal) {
+		super();
+		this.qtde = qtde;
+		this.subtotal = subtotal;
+
+	}
+
+	public void mostrar() {
+
+		System.out.println("`\n\nitemDePedido:\n");
+		System.out.println("Qtde: " + this.qtde);
+		System.out.println("Subtotal: " + this.subtotal);
+
+	}
 
 }
