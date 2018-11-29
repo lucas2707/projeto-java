@@ -125,7 +125,8 @@ public class InfoNote {
 			default:
 				System.out.println("Opção inválida!");
 			}
-			Teclado.lertexto("Pressione uma tecla para continuar...");
 		} while (opcao != 8);
+		Teclado.lertexto("Pressione uma tecla para continuar...");
+
 	}
 }
