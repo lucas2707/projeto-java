@@ -41,11 +41,18 @@ public class ItemDePedido {
 		super();
 	}
 
-	public ItemDePedido(int qtde, double subtotal, Notebook aux ) {
+	public ItemDePedido(int qtde, double subtotal) {
 		super();
 		this.qtde = qtde;
 		this.subtotal = subtotal;
 
+	}
+
+	public ItemDePedido(int qtde, double subtotal, Notebook notebook) {
+		super();
+		this.qtde = qtde;
+		this.subtotal = subtotal;
+		this.notebook = notebook;
 	}
 
 	public void mostrar() {
@@ -53,7 +60,6 @@ public class ItemDePedido {
 		System.out.println("`\n\nitemDePedido:\n");
 		System.out.println("Qtde: " + this.qtde);
 		System.out.println("Subtotal: " + this.subtotal);
-
 	}
 
 }

@@ -9,7 +9,7 @@ import util.Teclado;
 public class InfoNote {
 
 	Usuario user;
-    Notebook notebooks[] = new Notebook[10];
+	Notebook notebooks[] = new Notebook[10];
 	Pedido pedido;
 
 	boolean logado = false;
@@ -84,6 +84,13 @@ public class InfoNote {
 
 	public void buscarNotebook() {
 		System.out.println("buscarNotebook - Em Construção");
+
+		for (int i = 0; i < notebooks.length; i++) {
+			if (notebooks[i] != null) {
+				System.out.println(notebooks[i].getNumeroNote() + "-----" + notebooks[i].getModelo());
+			}
+		}
+
 	}
 
 	public void manterCarrinho() {
@@ -108,9 +115,9 @@ public class InfoNote {
 		if (aux == null) {
 			return;
 		}
-		
+
 		ItemDePedido item = new ItemDePedido(1, aux.getPrecoUnitario(), aux);
-		
+
 		pedido.inserirItem(item);
 	}
 
