@@ -66,14 +66,6 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "Endereco [\n logradouro=" + logradouro + ",\n numero=" + numero + ",\n complemento=" + complemento
-				+ ",\n bairro=" + bairro + ",\n cidade=" + cidade + ",\n estado=" + estado + ",\n cep=" + cep + "]";
-	}
-
-
 	public Endereco(String logradouro, String numero, String complemento, String bairro, String cidade, String estado,
 			String cep) {
 		super();
@@ -87,17 +79,17 @@ public class Endereco {
 
 	}
 
-	public void mostrar() {
-
-		System.out.println("`\n\nEndereço:\n");
-		System.out.println("Logradouro: " + this.logradouro);
-		System.out.println("Número: " + this.numero);
-		System.out.println("Complemento: " + this.complemento);
-		System.out.println("Bairro: " + this.bairro);
-		System.out.println("Cidade: " + this.cidade);
-		System.out.println("Estado: " + this.estado);
-		System.out.println("cep: " + this.cep);
+	public String toString() {
+		final String ENTER = "\n";
+		String retValue = "";
+		retValue = "Informações sobre o item de pedido:" + ENTER +
+		"Logradouro: " + logradouro + ENTER +
+		"Número: " + numero + ENTER +
+		"Complemento: " + complemento + ENTER +
+		"Bairro: " + bairro + ENTER +
+	    "Cidade: " + cidade + ENTER +
+		"Cidade: " + cidade + ENTER +
+		"CEP: " + cep + ENTER;				
+		return retValue;
 	}
-
-
-}
+}	

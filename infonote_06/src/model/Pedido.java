@@ -5,12 +5,9 @@ public class Pedido {
 	private String dataEmissao;
 	private String formaDePagamento;
 	private String situacao;
-	private int numero;
 	private double valorTotal;
-	private  String numeroPedido;
-	
-	
-	
+	private String numeroPedido;
+
 	private Endereco enderecoEntrega;
 	private ItemDePedido itens[] = new ItemDePedido[10];
 
@@ -38,12 +35,12 @@ public class Pedido {
 		this.situacao = situacao;
 	}
 
-	public int getNumero() {
-		return numero;
+	public String getNumeroPedido() {
+		return numeroPedido;
 	}
 
-	public void setNumero(int numero) {
-		this.numero = numero;
+	public void setNumeroPedido(String numeroPedido) {
+		this.numeroPedido = numeroPedido;
 	}
 
 	public double getValorTotal() {
@@ -58,51 +55,50 @@ public class Pedido {
 		return enderecoEntrega;
 	}
 
+	public void setEnderecoEntrega(Endereco enderecoEntrega) {
+		this.enderecoEntrega = enderecoEntrega;
+	}
+	
 	public ItemDePedido[] getItens() {
 		return itens;
 	}
 
-	public void setEnderecoEntrega(Endereco enderecoEntrega) {
-		this.enderecoEntrega = enderecoEntrega;
-	}
-
-	@Override
-	public String toString() {
-		return "Pedido [\n dataEmissao=" + dataEmissao + ",\n formaDePagamento=" + formaDePagamento + ",\n situacao="
-				+ situacao + ",\n numero=" + numero + ",\n valorTotal=" + valorTotal + "]";
+	public void setItens(ItemDePedido[] itens) {
+		this.itens = itens;
 	}
 
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(String dataEmissao, String formaDePagamento, String situacao, int numero, double valorTotal) {
+	public Pedido(String numeroPedido, String dataEmissao, String formaDePagamento, String situacao, int numero,
+			double valorTotal, Endereco enderecoEntrega) {
 		super();
-		this.numero = numero;
+		this.numeroPedido = numeroPedido;
 		this.valorTotal = valorTotal;
 		this.dataEmissao = dataEmissao;
 		this.formaDePagamento = formaDePagamento;
 		this.situacao = situacao;
-
+		this.enderecoEntrega = enderecoEntrega;
 	}
 
-	public void mostrar() {
-
-		System.out.println("`\n\nPedido:\n");
-		System.out.println("Número: " + this.numero);
-		System.out.println("Valor Total: " + this.valorTotal);
-		System.out.println("Data Emissão: " + this.dataEmissao);
-		System.out.println("Forma De Pagamento: " + this.formaDePagamento);
-		System.out.println("Situação: " + this.situacao);
-
-		System.out.println("\n\nItens do Pedido:\n");
-		for (int i = 0; i < itens.length; i++) {
-			if (itens[i] != null) {
-				itens[i].mostrar();
-			}
+	public String toString(){
+		final String ENTER = "\n";
+		String retValue = "";
+		retValue = "Informações sobre Pedido:" + ENTER +
+		"Número do Pedido: " + numeroPedido + ENTER +
+		"Data de Emissão: " + dataEmissao + ENTER +
+		"Forma de pagamento: " + formaDePagamento + ENTER +
+		"Valor Total: " + valorTotal + ENTER +
+		"Situação: " + situacao + ENTER +
+		"Endereço de Entrega: " + ENTER +
+		"Itens: ";
+		for (int i = 0; i < itens.length; i++){
+		retValue += itens[i] + ENTER;
 		}
-	}
-
+		return retValue;
+		}
+	
 	public boolean inserirItem(ItemDePedido item) {
 		for (int i = 0; i < itens.length; i++) {
 			if (itens[i] == null) {

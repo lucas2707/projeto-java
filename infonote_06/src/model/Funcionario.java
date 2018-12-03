@@ -20,4 +20,16 @@ public class Funcionario extends Usuario {
 	super(login, senha, tipo);
 		this.matricula = matricula;
 	}
-}
+	
+	public String toString () {
+		final String ENTER = "\n";
+		String retValue = "";
+		
+		retValue = "Informarções sobre o funcionário: " + ENTER + 
+		super.toString()+
+		"Matrícula: " + matricula + ENTER;		
+		return retValue;
+		}
+	}
+
+

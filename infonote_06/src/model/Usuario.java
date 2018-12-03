@@ -14,4 +14,14 @@ public class Usuario {
 
 	}
 
+	public String toString(){
+		final String ENTER = "\n";
+		String retValue = "";
+		retValue = "Informações sobre o usuário:" + ENTER +
+		super.toString()+
+		"Login: " + login + ENTER +
+		"Senha: " + senha + ENTER +
+		"Tipo: " + tipo + ENTER;
+		return retValue;
+	}
 }
