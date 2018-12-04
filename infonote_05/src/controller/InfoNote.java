@@ -125,61 +125,63 @@ public class InfoNote {
 		System.out.println("efetuarCompra - Em Construção");
 	}
 
-	InfoNote info = new InfoNote();
+	public static void main(String[] args) {
+		InfoNote info = new InfoNote();
 
-	int opcao = 8;
-	{
+		int opcao = 8;
+		{
 
-		do {
-			info.mostrarMenu();
-			opcao = Teclado.lerInt("Digite sua opção: ");
+			do {
+				info.mostrarMenu();
+				opcao = Teclado.lerInt("Digite sua opção: ");
 
-			switch (opcao) {
+				switch (opcao) {
 
-			case 1:
-				info.efetuarLogin();
-				break;
-
-			case 2:
-				info.cadastrarUsuario();
-				break;
-
-			case 3:
-				info.buscarNotebook();
-				break;
-
-			case 4:
-				info.manterCarrinho();
-				break;
-
-			case 5:
-				info.manterCarrinho();
-				break;
-
-			case 6:
-				info.manterCarrinho();
-				break;
-
-			case 7:
-				if (!info.logado) {
-					System.out.println("Efetue login para efetuar compra.");
+				case 1:
+					info.efetuarLogin();
 					break;
 
-				} else {
-
-					info.efetuarCompra();
+				case 2:
+					info.cadastrarUsuario();
 					break;
+
+				case 3:
+					info.buscarNotebook();
+					break;
+
+				case 4:
+					info.manterCarrinho();
+					break;
+
+				case 5:
+					info.manterCarrinho();
+					break;
+
+				case 6:
+					info.manterCarrinho();
+					break;
+
+				case 7:
+					if (!info.logado) {
+						System.out.println("Efetue login para efetuar compra.");
+						break;
+
+					} else {
+
+						info.efetuarCompra();
+						break;
+					}
+
+				case 8:
+					System.out.println("Saída do Sistema.");
+					break;
+
+				default:
+					System.out.println("Opção inválida!");
 				}
+			} while (opcao != 8);
+			Teclado.lertexto("Pressione uma tecla para continuar...");
 
-			case 8:
-				System.out.println("Saída do Sistema.");
-				break;
-
-			default:
-				System.out.println("Opção inválida!");
-			}
-		} while (opcao != 8);
-		Teclado.lertexto("Pressione uma tecla para continuar...");
-
+		}
 	}
 }

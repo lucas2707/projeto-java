@@ -72,6 +72,7 @@ public class InfoNote {
 		System.out.println("efetuarCompra - Em Construção");
 	}
 
+	public static void main (String[] args) {
 	InfoNote info = new InfoNote();
 
 	int opcao = 8;
@@ -129,4 +130,5 @@ public class InfoNote {
 		Teclado.lertexto("Pressione uma tecla para continuar...");
 
 	}
+}
 }
