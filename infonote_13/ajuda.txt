@@ -1,0 +1,21 @@
+===================================
+          Ajuda InfoNote
+===================================
+
+1) Efetuar login
+
+2) Cadastrar cliente
+
+3) Buscar notebook
+
+4) Inserir notebook no carrinho
+
+5) Remover notebook no carrinho
+
+6) Ver carrinho
+
+7) Efetuar Compra
+
+8) Ajuda
+
+8) Sair
