@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -8,6 +10,7 @@ import model.*;
 import model.DAO.ClienteDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.FuncionarioDAO;
+import model.DAO.NotebookDAO;
 import model.DAO.UsuarioDAO;
 import util.*;
 
@@ -15,6 +18,9 @@ public class InfoNote {
 
 	private static Cliente clienteGlobal = null;
 	private static Funcionario funcionarioGlobal = null;
+	
+
+
 	
 	Usuario usuario;
 	Cliente cliente;
@@ -189,6 +195,31 @@ public class InfoNote {
 		System.out.println(endereco);
 	}
 
+	
+	public void cadastrarNotebook() {
+		System.out.println("--------------------");
+		System.out.println("   InfoNote - Cadastro de notebooks.  ");
+		System.out.println("--------------------");
+
+		String modelo = Teclado.lertexto("Modelo: ");
+		String descricao = Teclado.lertexto("Descrição: ");
+		 
+		String dataCadastro = Teclado.lertexto("Data de cadastro: ");
+		String figura = Teclado.lertexto("figura: ");
+		int estoque = Teclado.lerInt("Estoque: ");
+		double precoUnitario = Teclado.lerDouble("Preço unitário: ");
+		String serialNote = Teclado.lertexto("Serial note: ");
+	
+		Notebook notebook = NotebookDAO.inserir(modelo,  descricao, dataCadastro,
+				figura,  estoque, precoUnitario, serialNote);
+		
+		System.out.println("--------------------");
+		System.out.println(" Notebook cadastrado com sucesso ");
+		System.out.println("--------------------");
+		System.out.println(notebook);
+		
+	}
+			
 	public void buscarNotebook() {
 		System.out.println("buscarNotebook - Em Construção");
 
@@ -197,8 +228,25 @@ public class InfoNote {
 				System.out.println(notebooks[i].getSerialNote() + "-----" + notebooks[i].getModelo());
 			}
 		}
-
 	}
+	
+		public void buscarNotebooks() {
+			System.out.println("buscarNotebooks - Em Construção");
+
+			for (int i = 0; i < notebooks.length; i++) {
+				if (notebooks[i] != null) {
+					
+					System.out.println(
+					notebooks[i].getSerialNote() + "-----" + 
+					notebooks[i].getModelo() + "-----" + 
+					notebooks[i].getDescricao() + "-----" + 
+					notebooks[i].getFigura() + "-----" + 
+					notebooks[i].getEstoque() + "-----" + 
+					notebooks[i].getPrecoUnitario() + "-----" + 
+					notebooks[i].getDataCadastro());
+				}
+			}
+	    }
 
 	public void manterCarrinho() {
 		System.out.println("manterCarrinho - Em Construção");
