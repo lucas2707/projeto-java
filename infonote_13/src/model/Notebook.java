@@ -106,5 +106,4 @@ public class Notebook {
          "Data de cadastro: " + dataCadastro;
 		return retValue;
 	}
-
-}	
+	}

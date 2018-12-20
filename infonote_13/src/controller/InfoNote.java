@@ -19,9 +19,6 @@ public class InfoNote {
 	private static Cliente clienteGlobal = null;
 	private static Funcionario funcionarioGlobal = null;
 	
-
-
-	
 	Usuario usuario;
 	Cliente cliente;
 	Notebook notebooks[] = new Notebook[10];
@@ -230,7 +227,7 @@ public class InfoNote {
 		}
 	}
 	
-		public void buscarNotebooks() {
+		public void mostrarNotebooks() {
 			System.out.println("buscarNotebooks - Em Construção");
 
 			for (int i = 0; i < notebooks.length; i++) {
@@ -248,6 +245,38 @@ public class InfoNote {
 			}
 	    }
 
+		public Notebook editarNotebook(){
+			
+			Notebook notebooks = null;
+			try {
+			
+			String sql = "update notebooks set descricao= ?,"
+					+ " dataCadastro = ?,"
+					+ " figura = ?,"
+					+ " estoque = ?,"
+					+ "precoUnitario = ?," 
+					+ "where note = ? ";
+			
+			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
+			"com.mysql.cj.jdbc.Driver","jeffery","1234");
+			
+			Connection con = conex.obterConexao();
+
+
+			PreparedStatement comando = con.prepareStatement(sql);
+			comando.setString(1,descricao);
+			comando.setString(2,dataCadastro);
+			comando.setString(3,figura);
+			comando.setInt(4,estoque);
+			comando.setDouble(5,precoUnitario);
+
+			comando.executeUpdate();
+			} catch(Exception e){
+			System.out.println(e.getMessage());
+			}
+			return notebooks;
+		}
+		
 	public void manterCarrinho() {
 		System.out.println("manterCarrinho - Em Construção");
 	}
@@ -317,9 +346,10 @@ public class InfoNote {
 		}
 		Teclado.lertexto("Pressione uma tecla para continuar...");
 		} while (opcao != 5);
-		}
+		} 
 	
 	
+
 	public static void main(String[] args) {
 		InfoNote info = new InfoNote();
 

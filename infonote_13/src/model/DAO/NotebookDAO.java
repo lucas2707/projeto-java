@@ -65,7 +65,7 @@ public class NotebookDAO {
 		
 		String sql = "Select * from contato";
 		
-		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC",
+		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
 				"com.mysql.cj.jdbc.Driver","jeffery","1234");
 		Connection con = conex.obterConexao();
 	
@@ -104,9 +104,9 @@ public class NotebookDAO {
 		Notebook notebooks = null;
 		try {
 		
-		String sql = "delete from contato where estoque - ?";
+		String sql = "delete from descricao, dataCadastro, figura, where note - ?";
 		
-		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC",
+		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
 		"com.mysql.cj.jdbc.Driver","jeffery","1234");
 		
 		Connection con = conex.obterConexao();
@@ -133,9 +133,14 @@ public static Notebook atualizar(String descricao, String dataCadastro,
 	Notebook notebooks = null;
 	try {
 	
-	String sql = "update notebooks set data de cadastro= ? where estoque = ?";
+	String sql = "update notebooks set descricao= ?,"
+			+ " dataCadastro = ?,"
+			+ " figura = ?,"
+			+ " estoque = ?,"
+			+ "precoUnitario = ?," 
+			+ "where note = ? ";
 	
-	Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC",
+	Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
 	"com.mysql.cj.jdbc.Driver","jeffery","1234");
 	
 	Connection con = conex.obterConexao();
@@ -154,11 +159,4 @@ public static Notebook atualizar(String descricao, String dataCadastro,
 	}
 	return notebooks;
 	}
-
-
-
-
-
-
-
 }
