@@ -1,7 +1,5 @@
 package controller;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -16,24 +14,26 @@ import util.*;
 
 public class InfoNote {
 
-	private static Cliente clienteGlobal = null;
-	private static Funcionario funcionarioGlobal = null;
 	
 	Usuario usuario;
-	Cliente cliente;
 	Notebook notebooks[] = new Notebook[10];
 	Pedido pedido;
-	boolean logado = false;
+	Cliente cliente;
+	Funcionario funcionario;
+
+	boolean logado = false; 
 	Configurador config;
 	Ajuda ajuda;
 
 	public InfoNote() {
 
 		config = new Configurador();
+		
 		Locale.setDefault(new Locale(config.getIdioma(), config.getRegiao()));
+		
 		ajuda = new Ajuda(config.getArquivoAjuda());
 	}
-
+	
 	private static final int LOGIN = 1;
 	private static final int CADASTRAR_USUARIO = 2;
 	private static final int BUSCAR_NOTEBOOK = 3;
@@ -44,7 +44,7 @@ public class InfoNote {
 	private static final int AJUDA = 8;
 	private static final int AREA_ADMINISTRATIVA = 9;
 	private static final int SAIR = 10;
-
+	
 	public static boolean isNumeric(String str) 
 	{
 		try
@@ -67,7 +67,7 @@ public class InfoNote {
 				+ DateFormat.getTimeInstance().format(new Date()));
 
 		if (logado == true) {
-			System.out.println("Seja bem vindo, " + clienteGlobal.getNomeInvertido());
+			System.out.println("Seja bem vindo, " + cliente.getNomeInvertido());
 		}
 		System.out.println("==================================================");
 
@@ -125,6 +125,7 @@ public class InfoNote {
 		
 		case 3:
 		System.out.println("Obrigado e volte sempre!");
+		System.exit(0);
 		break;
 		default:
 		System.out.println("Opção inválida");
@@ -139,6 +140,7 @@ public class InfoNote {
 		login = Teclado.lertexto("Digite o login: ");
 		senha = Teclado.lertexto("Digite a senha: ");
 		Funcionario funcionario = FuncionarioDAO.buscarPorLoginSenha(login, senha);
+		
 		if (funcionario != null) {
 		logado = funcionario.validarLogin(login, senha);
 		}else{
@@ -146,17 +148,20 @@ public class InfoNote {
 		System.out.println("Login efetuado com sucesso!");
 		} else {
 		System.out.println("Usuário ou senha inválido.");
+		System.exit(0);
 		}
 		}
 		}
 	
 	public void cadastrarUsuario() {
+			
 		System.out.println("--------------------");
 		System.out.println("   InfoNote - Cadastro de usuários.  ");
 		System.out.println("--------------------");
 
 		String login = Teclado.lertexto("Login: ");
 		String senha = Teclado.lertexto("Senha: ");
+		
 		int tipo = 0;
 		
 		if (senha.equals("") || senha == null) {
@@ -178,12 +183,13 @@ public class InfoNote {
 		String cep = Teclado.lertexto("CEP: ");
 
 		usuario = UsuarioDAO.inserir(login, senha, tipo);
+		
 		cliente = ClienteDAO.inserir(login, senha, tipo, codigoCliente, nome,
 		email,telefone);
 		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento,
 		bairro, cidade, estado, cep, codigoCliente);
 		
-		clienteGlobal = cliente;
+		//clienteGlobal = cliente;
 
 		System.out.println("--------------------");
 		System.out.println(" Usuário cadastrado com sucesso ");
@@ -221,8 +227,11 @@ public class InfoNote {
 		System.out.println("buscarNotebook - Em Construção");
 
 		for (int i = 0; i < notebooks.length; i++) {
+			
 			if (notebooks[i] != null) {
-				System.out.println(notebooks[i].getSerialNote() + "-----" + notebooks[i].getModelo());
+			System.out.println(notebooks[i].getSerialNote() + "-----" + 
+			notebooks[i].getModelo());
+			
 			}
 		}
 	}
@@ -245,36 +254,22 @@ public class InfoNote {
 			}
 	    }
 
-		public Notebook editarNotebook(){
+		private void editarNotebook() {
+			System.out.println("====================================");
+			System.out.println(" Editar Notebook ");
+			System.out.println("====================================");
+			String serialNote = Teclado.lertexto("Informe o SeriaNote do Notebook a ser atualizado: ");
+			String descricao = Teclado.lertexto("Descricao: ");
+			int estoque = Teclado.lerInt("Estoque: ");
+			double precoUnitario = Teclado.lerDouble("Preço Unitário: ");
+			String figura = Teclado.lertexto("Figura: ");
+			String dataCadastro = Teclado.lertexto("Data de Cadastro: ");
 			
-			Notebook notebooks = null;
-			try {
 			
-			String sql = "update notebooks set descricao= ?,"
-					+ " dataCadastro = ?,"
-					+ " figura = ?,"
-					+ " estoque = ?,"
-					+ "precoUnitario = ?," 
-					+ "where note = ? ";
+			Notebook notebook = NotebookDAO.atualizar(descricao, dataCadastro, figura, estoque, precoUnitario, serialNote);
+			System.out.println("Notebook atualizado com sucesso");
+			System.out.println(notebook);
 			
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
-			"com.mysql.cj.jdbc.Driver","jeffery","1234");
-			
-			Connection con = conex.obterConexao();
-
-
-			PreparedStatement comando = con.prepareStatement(sql);
-			comando.setString(1,descricao);
-			comando.setString(2,dataCadastro);
-			comando.setString(3,figura);
-			comando.setInt(4,estoque);
-			comando.setDouble(5,precoUnitario);
-
-			comando.executeUpdate();
-			} catch(Exception e){
-			System.out.println(e.getMessage());
-			}
-			return notebooks;
 		}
 		
 	public void manterCarrinho() {
@@ -313,6 +308,18 @@ public class InfoNote {
 		System.out.println(ajuda.getTexto());
 	}
 	
+	private void excluirNotebook() {
+		
+		System.out.println("====================================");
+		System.out.println(" Excluir de Notebook ");
+		System.out.println("====================================");
+		String serialNote = Teclado.lertexto("Informe o SeriaNote do Notebook a ser excluido: ");
+		
+		Notebook notebook = NotebookDAO.excluir(serialNote);
+		System.out.println(notebook);	
+		
+	}
+	
 	public void areaAdministrativa(){
 		InfoNote info = new InfoNote();
 		efetuarLoginAdm();
@@ -340,6 +347,7 @@ public class InfoNote {
 		break;
 		case 5:
 		System.out.println("Saída do Sistema");
+		System.exit(0);
 		break;
 		default:
 		System.out.println("Opção inválida!");

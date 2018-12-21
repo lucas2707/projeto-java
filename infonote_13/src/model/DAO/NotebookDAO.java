@@ -28,6 +28,7 @@ public class NotebookDAO {
 			String figura, int estoque, double precoUnitario, String serialNote) {
 			Notebook notebook = null;
 			NotebookDAO noteDAO = new NotebookDAO();
+			
 			try {
 			
 			String sql = "insert into notebook " +
@@ -61,12 +62,13 @@ public class NotebookDAO {
 	
 	public static Notebook[] buscarTodos(){
 		Notebook[] notebooks = null;
+		NotebookDAO noteDAO = new NotebookDAO();
+		
 		try {
 		
-		String sql = "Select * from contato";
+		String sql = "Select * from notebook";
 		
-		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
-				"com.mysql.cj.jdbc.Driver","jeffery","1234");
+		Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 		Connection con = conex.obterConexao();
 	
 		
@@ -90,7 +92,6 @@ public class NotebookDAO {
 		rs.getDouble("precoUnitario"));
 		}
 	
-		
 		rs.close();
 		comando.close();
 		con.close();
@@ -100,21 +101,22 @@ public class NotebookDAO {
 		return notebooks;
 		}
 	
-	public static Notebook excluir(int estoque){
+	public static Notebook excluir(String id){
 		Notebook notebooks = null;
+		NotebookDAO noteDAO = new NotebookDAO();
+		
 		try {
 		
-		String sql = "delete from descricao, dataCadastro, figura, where note - ?";
+		String sql = "delete from notebook where serialnote = ?";
 		
-		Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
-		"com.mysql.cj.jdbc.Driver","jeffery","1234");
+		Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 		
 		Connection con = conex.obterConexao();
 	
 		
 		PreparedStatement comando = con.prepareStatement(sql);
 		
-		comando.setInt(1,estoque);
+		comando.setString(1,id);
 		comando.executeUpdate();
 		
 		
@@ -131,17 +133,17 @@ public static Notebook atualizar(String descricao, String dataCadastro,
 		String figura, int estoque, double precoUnitario, String serialNote){
 	
 	Notebook notebooks = null;
+	NotebookDAO noteDAO = new NotebookDAO();
+	
 	try {
 	
-	String sql = "update notebooks set descricao= ?,"
-			+ " dataCadastro = ?,"
-			+ " figura = ?,"
-			+ " estoque = ?,"
-			+ "precoUnitario = ?," 
-			+ "where note = ? ";
+	String sql =  "update notebook set "
+			+ " descricao = ?, estoque = ?, precoUnitario = ?, "
+			+ " figura = ?, dataCadastro = ? "
+			+ " where "
+			+ " serialnote = ? ";
 	
-	Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote?useTimezone=true&serverTimezone=UTC",
-	"com.mysql.cj.jdbc.Driver","jeffery","1234");
+	Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 	
 	Connection con = conex.obterConexao();
 
